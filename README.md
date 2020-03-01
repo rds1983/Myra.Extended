@@ -3,12 +3,9 @@
 
 Myra.Extended provides additional functionaly for [Myra](https://github.com/rds1983/Myra).
 
-If you would like to share a Myra widget, feel free to make a PR.
-
 ## Widgets
-### LogView
-Animated Game Log
+[LogView](/src/Widgets/LogView.cs) is animated game log widget:
 ![](/images/LogView.gif)
 
-### Arrow
+[Arrow](/src/Widgets/Arrow.cs) is arrow widget:
 ![](/images/Arrow.png)
