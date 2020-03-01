@@ -51,8 +51,6 @@ namespace Myra.Extended.Widgets
 
 			_logStack.Widgets.Add(textBlock);
 
-			UpdateGridLogPositions();
-
 			Desktop.UpdateLayout();
 
 			// Recalculate total height
@@ -126,14 +124,6 @@ namespace Myra.Extended.Widgets
 			_logStack.Widgets.Clear();
 		}
 
-		private void UpdateGridLogPositions()
-		{
-			for (var i = 0; i < _logStack.Widgets.Count; ++i)
-			{
-				_logStack.Widgets[i].GridRow = i;
-			}
-		}
-
 		private void ProcessLog()
 		{
 			if (_logStarted == null)
@@ -150,8 +140,6 @@ namespace Myra.Extended.Widgets
 				{
 					_logStack.Widgets.RemoveAt(0);
 				}
-
-				UpdateGridLogPositions();
 
 				_logStack.Top = 0;
 				_logStarted = null;
