@@ -10,7 +10,7 @@ If you would like to share a Myra widget, feel free to create a PR in this repo.
 [https://github.com/rds1983/Myra.Extended/wiki](https://github.com/rds1983/Myra.Extended/wiki)
 
 ## Widgets
-[LogView](/src/Widgets/LogView.cs) is animated game log widget:
+[LogView](/src/Widgets/LogView.cs) is auto scrolling game log widget:
 ![](/images/LogView.gif)
 
 [Arrow](/src/Widgets/Arrow.cs) is arrow widget:
