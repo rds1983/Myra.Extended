@@ -5,6 +5,7 @@ Myra.Extended provides additional functionaly for Myra.
 
 ## Widgets
 ### LogView
+Animated Game Log
 ![](/images/LogView.gif)
 
 ### Arrow
