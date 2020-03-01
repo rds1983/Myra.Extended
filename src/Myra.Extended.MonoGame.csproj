@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Authors>MyraTeam</Authors>
+    <Product>Myra.Extended</Product>
+    <Description>Additional functionality for https://github.com/rds1983/Myra</Description>
+    <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/rds1983/Myra.Extended</PackageProjectUrl>
+    <AssemblyName>Myra.Extended</AssemblyName>
+    <RootNamespace>Myra.Extended</RootNamespace>
+    <Version>1.0.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DefineConstants>$(DefineConstants);MONOGAME</DefineConstants>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <PackageId>Myra.Extended</PackageId>
+    <OutputPath>bin\MonoGame\$(Configuration)</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Portable" PrivateAssets="All" Version="3.6.0.1625" />
+    <PackageReference Include="Myra" Version="0.9.9.198" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ApplicationIcon />
+    <StartupObject />
+    <AssemblyName>Myra.Extended.Samples.Widgets</AssemblyName>
+    <RootNamespace>Myra.Extended.Samples.Widgets</RootNamespace>
+    <TargetFramework>net45</TargetFramework>
+    <OutputPath>bin\FNA\$(Configuration)</OutputPath>
+    <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FNA\FNA.csproj" />
+    <ProjectReference Include="..\..\..\Myra\src\Myra\Myra.FNA.csproj" />
+    <ProjectReference Include="..\..\src\Myra.Extended.FNA.csproj" />
+  </ItemGroup>
+</Project>
