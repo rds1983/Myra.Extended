@@ -1,47 +1,39 @@
-﻿using Myra.Graphics2D.UI;
+﻿using Microsoft.Xna.Framework;
+using Myra.Graphics2D.UI;
 using System;
 
 namespace Myra.Extended.Widgets
 {
-	public class LogView : EndlessContainer<Panel>
+	public class LogView : ScrollViewer
 	{
-		private const int LogMoveUpInMs = 300;
-
 		private VerticalStackPanel _logStack;
 		private DateTime? _logStarted;
-		private int _moveHeight;
+		private int _logPosition;
+
+		public int LogMoveUpInMs
+		{
+			get; set;
+		} = 300;
+
+		public int MaximumStrings
+		{
+			get; set;
+		} = 100;
 
 		public LogView()
 		{
-			HorizontalAlignment = HorizontalAlignment.Stretch;
-			VerticalAlignment = VerticalAlignment.Stretch;
-			ClipToBounds = true;
-
-			InternalChild = new Panel();
-
-			_logStack = new VerticalStackPanel();
-			InternalChild.Widgets.Add(_logStack);
-		}
-
-		private int CalculateTotalHeight(int start = 0)
-		{
-			var totalHeight = 0;
-			for (var i = start; i < _logStack.Widgets.Count; ++i)
+			_logStack = new VerticalStackPanel
 			{
-				var widget = _logStack.Widgets[i];
-				totalHeight += widget.ActualBounds.Height;
+				VerticalAlignment = VerticalAlignment.Bottom
+			};
 
-				if (i < _logStack.Widgets.Count - 1)
-				{
-					totalHeight += _logStack.Spacing;
-				}
-			}
-
-			return totalHeight;
+			InternalChild = _logStack;
 		}
 
 		public void Log(string message)
 		{
+			var oldBounds = _logStack.Bounds;
+
 			// Add to the end
 			var textBlock = new Label
 			{
@@ -51,49 +43,19 @@ namespace Myra.Extended.Widgets
 
 			_logStack.Widgets.Add(textBlock);
 
+			// Update sizes of all widgets including LogView
 			Desktop.UpdateLayout();
 
-			// Recalculate total height
-			var totalHeight = CalculateTotalHeight();
-
-			if (totalHeight > ActualBounds.Height)
+			if (ScrollMaximum.Y == 0)
 			{
-				// Initiate log movement
-				if (_logStarted == null)
-				{
-					_logStarted = DateTime.Now;
-				}
-
-				// Determine amount of log strings that needs to be removed
-				var start = 1;
-				while (start < _logStack.Widgets.Count && totalHeight > ActualBounds.Height)
-				{
-					totalHeight = CalculateTotalHeight(start);
-					if (totalHeight <= ActualBounds.Height)
-					{
-						break;
-					}
-
-					++start;
-				}
-
-				// Calculate move height
-				_moveHeight = 0;
-				for (var i = 0; i < start; ++i)
-				{
-					var widget = _logStack.Widgets[i];
-
-					_moveHeight += widget.ActualBounds.Height;
-
-					if (i < start - 1)
-					{
-						_moveHeight += _logStack.Spacing;
-					}
-				}
-
+				// We need to scroll from minus to zero
+				var deltaY = oldBounds.Height - _logStack.Bounds.Height;
+				ScrollPosition += new Point(0, deltaY);
 			}
 
-			ProcessLog();
+			// Initiate log movement
+			_logStarted = DateTime.Now;
+			_logPosition = ScrollPosition.Y;
 		}
 
 		public void LogFormat(string message, params object[] args)
@@ -136,18 +98,20 @@ namespace Myra.Extended.Widgets
 
 			if (elapsed.TotalMilliseconds >= LogMoveUpInMs)
 			{
-				while (_logStack.Widgets.Count > 0 && CalculateTotalHeight() > ActualBounds.Height)
+				while (_logStack.Widgets.Count > MaximumStrings)
 				{
 					_logStack.Widgets.RemoveAt(0);
 				}
 
-				_logStack.Top = 0;
+				Desktop.UpdateLayout();
+
+				ScrollPosition = new Point(0, ScrollMaximum.Y);
 				_logStarted = null;
 				return;
 			}
 
-			var y = -(int)(elapsed.TotalMilliseconds * _moveHeight / LogMoveUpInMs);
-			_logStack.Top = y;
+			var y = _logPosition + (int)(elapsed.TotalMilliseconds * (ScrollMaximum.Y - _logPosition) / LogMoveUpInMs);
+			ScrollPosition = new Point(0, y);
 		}
 
 		public override void InternalRender(RenderContext context)

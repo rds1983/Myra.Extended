@@ -17,6 +17,6 @@
 
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.Portable" PrivateAssets="All" Version="3.6.0.1625" />
-    <PackageReference Include="Myra" Version="0.9.9.198" />
+    <PackageReference Include="Myra" Version="0.9.9.202" />
   </ItemGroup>
 </Project>
