@@ -14,6 +14,7 @@ namespace Myra.Extended.Samples.Widgets
 		private Demo _currentDemo;
 		private KeyboardState _lastKeyboard;
 		private bool _isDemoFullScreen = false;
+		private Desktop _desktop;
 		
 		public static WidgetsGame Instance { get; private set; }
 
@@ -76,17 +77,18 @@ namespace Myra.Extended.Samples.Widgets
 			_panelDemo = new Panel();
 			_root.Widgets.Add(_panelDemo);
 
-			Desktop.Root = _root;
+			_desktop = new Desktop();
+			_desktop.Root = _root;
 
 #if MONOGAME
 			// Inform Myra that external text input is available
 			// So it stops translating Keys to chars
-			Desktop.HasExternalTextInput = true;
+			_desktop.HasExternalTextInput = true;
 
 			// Provide that text input
 			Window.TextInput += (s, a) =>
 			{
-				Desktop.OnChar(a.Character);
+				_desktop.OnChar(a.Character);
 			};
 #endif
 		}
@@ -114,11 +116,11 @@ namespace Myra.Extended.Samples.Widgets
 			{
 				if (!_isDemoFullScreen)
 				{
-					Desktop.Root = _currentDemo.Widget;
+					_desktop.Root = _currentDemo.Widget;
 				}
 				else
 				{
-					Desktop.Root = _root;
+					_desktop.Root = _root;
 				}
 
 				_isDemoFullScreen = !_isDemoFullScreen;
@@ -134,7 +136,7 @@ namespace Myra.Extended.Samples.Widgets
 			base.Draw(gameTime);
 
 			GraphicsDevice.Clear(Color.Black);
-			Desktop.Render();
+			_desktop.Render();
 		}
 	}
 }
