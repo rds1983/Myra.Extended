@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <Authors>MyraTeam</Authors>
+    <Product>Myra.Extended</Product>
+    <Description>Additional functionality for https://github.com/rds1983/Myra</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/rds1983/Myra.Extended</PackageProjectUrl>
+    <RootNamespace>Myra.Extended</RootNamespace>
+    <Version>1.1.1</Version>
+  </PropertyGroup>
+</Project>
