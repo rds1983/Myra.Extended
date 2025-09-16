@@ -2,7 +2,6 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DefineConstants>$(DefineConstants);MONOGAME</DefineConstants>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <AssemblyName>Myra.Extended</AssemblyName>
     <PackageId>Myra.Extended</PackageId>
     <OutputPath>bin\MonoGame\$(Configuration)</OutputPath>
@@ -13,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.Portable" PrivateAssets="All" Version="3.6.0.1625" />
-    <PackageReference Include="Myra" Version="1.2.2" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" PrivateAssets="All" Version="$(MonoGameVersion)" />
+    <PackageReference Include="Myra" Version="1.5.9" />
   </ItemGroup>
 </Project>

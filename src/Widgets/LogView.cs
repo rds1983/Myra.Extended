@@ -29,7 +29,7 @@ namespace Myra.Extended.Widgets
 			};
 
 
-			InternalChild = _logStack;
+			Content = _logStack;
 		}
 
 		public void Log(string message)

@@ -32,18 +32,18 @@ namespace Myra.Extended.Samples.Widgets
 			var messagesCount = Utility.Random.Next(1, 4);
 
 			var damage = Utility.Random.Next(1, 10);
-			_logView.LogFormat(@"\c[lightBlue]Gandalf\c[white] hits \c[green]a kobold\c[white] with his staff for \c[red]{0}\c[white] damage.", damage);
+			_logView.LogFormat(@"/c[lightBlue]Gandalf/c[white] hits /c[green]a kobold/c[white] with his staff for /c[red]{0}/c[white] damage.", damage);
 
 			if (messagesCount > 1)
 			{
 				damage = Utility.Random.Next(1, 5);
-				_logView.LogFormat(@"\c[green]A kobold\c[white] claws \c[lightBlue]Gandalf\c[white] for \c[red]{0}\c[white] damage.", damage);
+				_logView.LogFormat(@"/c[green]A kobold/c[white] claws /c[lightBlue]Gandalf/c[white] for /c[red]{0}/c[white] damage.", damage);
 			}
 
 			if (messagesCount > 2)
 			{
 				damage = Utility.Random.Next(1, 15);
-				_logView.LogFormat(@"\c[lightBlue]Gandalf\c[white] heals himself for \c[lightgreen]{0}\c[white] hit points.", damage);
+				_logView.LogFormat(@"/c[lightBlue]Gandalf/c[white] heals himself for /c[lightgreen]{0}/c[white] hit points.", damage);
 			}
 
 
